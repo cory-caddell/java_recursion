@@ -2,6 +2,12 @@
 
 public class CoryCaddellAssignment1A {
 	
+	/**
+	 * Method to count occurrence of a letter in a word
+	 * @param letter count number of occurrences in a word
+	 * @param word search word for amount of time letter occurs
+	 * @return helper recursive method to count occurence of a letter in a word
+	 */
 	public static int coryCaddellMethod(char letter, String word) {
 		
 		int low = 0;
