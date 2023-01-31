@@ -10,54 +10,56 @@ public class CoryCaddellAssignment1A {
 	 */
 	public static int coryCaddellMethod(char letter, String word) {
 		
-		int low = 0;
-		int high = word.length() - 1;
+		int index = 0;
+		int max = word.length() - 1;
 		int count = 0;
-		return coryCaddellMethod(letter, word, low, high, count);
+		return coryCaddellMethod(letter, word, index, max, count);
 	}
 	
 	/**
 	 * Helper method to recursively count occurrence of a letter in a word
 	 * @param letter count number of occurrences in a word
-	 * @param word search word for amount of time letter occurs
-	 * @param low current word index
-	 * @param high max word index
+	 * @param word search word for amount of times letter occurs
+	 * @param index current letter of word
+	 * @param max word length
 	 * @param count sum of occurrences of letter in word
 	 * @return count
 	 */
-	public static int coryCaddellMethod(char letter, String word, int low, int high, int count) {
+	public static int coryCaddellMethod(char letter, String word, int index, int max, int count) {
 		
-		if (low > high) {
+		if (index > max) {
 			return count;
 		}
 		
-		if (word.charAt(low) == letter) {
+		if (word.charAt(index) == letter) {
 			count++;
 		}
 
-		return coryCaddellMethod(letter, word, low + 1, high, count);
+		return coryCaddellMethod(letter, word, index + 1, max, count);
 	}
 	
 	/**
 	 * Method to recursively print number of times a letter occurs in a word in table format
-	 * @param word search word for amount of time letter occurs
+	 * @param word search word for amount of times letter occurs
 	 */
 	public static void coryCaddellTable(String word) {
 		
-		char[] alphabet = new char[52]; 
-		alphabet = coryCaddellUnicodeArray(alphabet, 0, alphabet.length - 1, (char)65);
+		char[] alphabet = new char[26];
+		alphabet = coryCaddellUnicodeArray(alphabet, 0, alphabet.length - 1, (char)65); // Begin array with 'A' character, which is 65 per ASCI II table
 		
 		int index = 0;
 		int max = alphabet.length;
 		
-		coryCaddellTable(word, alphabet, index, max);
+		coryCaddellTable(word.toUpperCase(), alphabet, index, max);						// Change case to upper for word to match alphabet array
 		
 	}
 		
 	/**
 	 * Helper method to recursively print number of times a letter occurs in a word in table format
 	 * @param word search word for amount of time letter occurs
-	 * @param n index to cycle through alphabet array
+	 * @param alphabet array containing all letters of alphabet
+	 * @param index current element in alphabet array
+	 * @param max word length
 	 */
 	public static void coryCaddellTable(String word, char[] alphabet, int index, int max) {
 
@@ -71,19 +73,14 @@ public class CoryCaddellAssignment1A {
 	 * Method to fill array with every letter in the alphabet, capitalized and lower case
 	 * @param array array to be filled
 	 * @param index array index
-	 * @param end max array index
+	 * @param max array length
 	 * @param unicodeVal Letter of alphabet per ASCII table
 	 * @return alphabet array
 	 */
-	public static char[] coryCaddellUnicodeArray(char[] array, int index, int end, char unicodeVal) {
+	public static char[] coryCaddellUnicodeArray(char[] array, int index, int max, char unicodeVal) {
 		
-		if (index > end) {
+		if (index > max) {
 			return array;
-		}
-		
-		// skip non-alphabet characters
-		if (index == 26) {
-			unicodeVal = (char)97;
 		}
 		
 		array[index] = unicodeVal;
